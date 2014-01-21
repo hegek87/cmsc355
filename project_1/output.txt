@@ -1,0 +1,11 @@
+English: house, Foreign: hus
+English: house, Foreign: hus
+English: apple, Foreign: eple
+English: orange, Foreign: appelsin
+English: ban, Foreign: Translation not found
+English: bark, Foreign: bjeff
+English: bat, Foreign: Translation not found
+English: bike, Foreign: sykkel
+English: house, Foreign: hus
+English: apple, Foreign: eple
+English: apple, Foreign: eple

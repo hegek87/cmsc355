@@ -1,15 +1,14 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.PrintWriter;
 import java.io.IOException;
 import java.io.FileReader;
 import java.io.FileWriter;
-/*
-*  CHANGE TO PRINTWRITER INSTEAD OF BUFFEREDWRITER
-*/
+
 public class Dictionary{
 	private String fileName;
 	private BufferedReader reader;
-	private BufferedWriter writer;
+	private PrintWriter writer;
 	
 	public Dictionary(String fileName){
 		this.fileName = fileName;
@@ -19,9 +18,9 @@ public class Dictionary{
 	private void openDict(){
 		try{
 			FileReader fr = new FileReader(this.fileName);
-			FileWriter fw = new FileWriter(this.fileName);
+			FileWriter fw = new FileWriter("output.txt", true);
 			this.reader = new BufferedReader(fr);
-			this.writer = new BufferedWriter(fw);
+			this.writer = new PrintWriter(new BufferedWriter(fw));
 		} catch(IOException ioe){
 			ioe.printStackTrace();
 		}
@@ -29,12 +28,58 @@ public class Dictionary{
 	
 	// clean up -- close the open readers
 	public void cleanUp(){
-		reader.close();
-		write.close();
+		try{
+			reader.close();
+			writer.close();
+		} catch(IOException ioe){
+			ioe.printStackTrace();
+		}
+	}
+	
+	// returns the foreign word if found, otherwise return null
+	public String translate(String en){
+		String[] enFo;
+		String temp;
+		try{
+			while((temp = reader.readLine()) != null){
+				enFo = temp.split(", ");
+				if(en.equals(enFo[0])){
+					return enFo[1];
+				}
+			}
+		} catch(IOException ioe){
+			ioe.printStackTrace();
+		}
+		return null;
 	}
 	
 	public BufferedReader getReader(){ return reader; }
-	public BufferedWriter getWriter(){ return writer; }
+	public PrintWriter getWriter(){ return writer; }
+	
+	public static int processWord(String en, String fileName){
+		Dictionary d;
+		String temp;
+		if(fileName == null){
+			// no dictionary supplied
+			temp = "norwegian.txt";
+		}
+		else{
+			temp = fileName;
+		}
+		d = new Dictionary(temp);
+		d.openDict();
+		String foreign = d.translate(en);
+		String found = (foreign != null) ? 
+						foreign : "Translation not found";
+		
+		// display to user
+		System.out.println(found);
+		d.getWriter().print("English: " + en);
+		d.getWriter().println(", Foreign: " + found);
+		
+		d.cleanUp();
+		return 0;
+	}
 	
 	/*
 	*  args[0] == Dictionary
@@ -42,22 +87,7 @@ public class Dictionary{
 	*  args[2] == fileName
 	*/
 	public static void main(String[] args){
-		Dictionary d;
-		String fileName;
-		if(args.length < 3){
-			// no dictionary supplied
-			fileName = "norwegian.txt";
-		}
-		else{
-			fileName = args[3];
-		}
-		d = new Dictionary(fileName);
-		d.openDict();
-		
-		String foreign = d.translate();
-		// display to user
-		System.out.println(foreign);
-		
-		d.getWriter().
+		processWord(args[0], ((args.length != 2) ? null : args[1]));
+	}
 		
 }
