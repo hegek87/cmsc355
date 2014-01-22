@@ -87,7 +87,36 @@ public class Dictionary{
 	*  args[2] == fileName
 	*/
 	public static void main(String[] args){
-		processWord(args[0], ((args.length != 2) ? null : args[1]));
+	/*
+		System.out.println("IN MAIN");
+		for(int i = 0; i < args.length; ++i){
+			System.out.println(args[i]);
+		}*/
+		Dictionary d;
+		String temp = "norwegian.txt";
+		/*
+		if(args[1] != null){
+			System.out.println("IN IF");
+			temp = args[1];
+		}
+		else{
+			System.out.println("IN ELSE");
+			// no dictionary supplied
+			temp = "norwegian.txt";
+		}*/
+		d = new Dictionary(temp);
+		d.openDict();
+		String foreign = d.translate(args[0]);
+		String found = (foreign != null) ? 
+						foreign : "Translation not found";
+		// display to user
+		System.out.println(found);
+		d.getWriter().print("English: " + args[0]);
+		d.getWriter().println(", Foreign: " + found);
+		
+		d.cleanUp();
+		//processWord(args[0], ((args.length != 2) ? null : args[1]));
+		
 	}
 		
 }

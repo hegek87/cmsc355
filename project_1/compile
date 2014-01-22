@@ -1,0 +1,9 @@
+#!/bin/bash
+
+rm -f Dictionary.jar
+javac Dictionary.java
+if [[ "$1" = "j" ]]; then
+	jar -cvfm Dictionary.jar manifest-dict.mf Dictionary.class
+fi
+
+java -jar Dictionary.jar apple
