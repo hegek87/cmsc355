@@ -1,58 +1,32 @@
-English: apple, Foreign: manzana
-English: orange, Foreign: naranja
-English: sleep, Foreign: Translation not found
-English: face, Foreign: cara
-English: bouncy, Foreign: con mucho rebote
-English: house, Foreign: casa
-English: alp, Foreign: Translation not found
-English: grape, Foreign: uva
-English: grand, Foreign: Translation not found
-English: apple, Foreign: manzana
-English: grape, Foreign: uva
-English: orange, Foreign: naranja
-English: house, Foreign: casa
-English: car, Foreign: coche
-English: sleep, Foreign: Translation not found
-English: apple, Foreign: manzana
-English: apple, Foreign: manzana
-English: orange, Foreign: naranja
-English: grape, Foreign: uva
 English: apple, Foreign: eple
+English: bat, Foreign: Translation not found
 English: orange, Foreign: appelsin
+English: bar, Foreign: Translation not found
 English: grape, Foreign: drue
-English: apple, Foreign: eple
-English: orange, Foreign: appelsin
-English: grape, Foreign: drue
-English: face, Foreign: ansikt
-English: quit, Foreign: slutte
-English: hunt, Foreign: Translation not found
-English: apple, Foreign: manzana
-English: orange, Foreign: naranja
-English: house, Foreign: casa
-English: face, Foreign: cara
-English: grape, Foreign: uva
-English: man, Foreign: Translation not found
-English: kit, Foreign: Translation not found
-English: cray, Foreign: Translation not found
-English: crab, Foreign: cangrejo
-English: car, Foreign: coche
-English: apple, Foreign: manzana
-English: orange, Foreign: naranja
-English: apple, Foreign: eple
-English: orange, Foreign: appelsin
-English: orange, Foreign: appelsin
-English: apple, Foreign: eple
-English: orange, Foreign: appelsin
-English: grape, Foreign: drue
-English: house, Foreign: hus
-English: apple, Foreign: manzana
-English: orange, Foreign: naranja
-English: grape, Foreign: uva
-English: house, Foreign: casa
-English: sleep, Foreign: Translation not found
-English: car, Foreign: coche
-English: apple, Foreign: eple
-English: house, Foreign: hus
-English: sleep, Foreign: sove
-English: airplane, Foreign: fly
+English: bike, Foreign: sykkel
 English: car, Foreign: bil
+English: hat, Foreign: Translation not found
+English: airplane, Foreign: fly
+English: face, Foreign: ansikt
+English: board, Foreign: Translation not found
+English: table, Foreign: bord
+English: quit, Foreign: slutte
+English: hello, Foreign: Translation not found
+English: bark, Foreign: bjeff
+English: dog, Foreign: Translation not found
+English: cat, Foreign: Translation not found
+English: sleep, Foreign: sove
+English: house, Foreign: hus
+English: apple, Foreign: manzana
+English: house, Foreign: casa
+English: bike, Foreign: bici
+English: cat, Foreign: Translation not found
+English: dog, Foreign: Translation not found
+English: mic, Foreign: Translation not found
+English: bouncy, Foreign: con mucho rebote
+English: extrovert, Foreign: extrovertido 
+English: bark, Foreign: corteza
+English: house, Foreign: casa
+English: face, Foreign: cara
+English: crab, Foreign: cangrejo
+English: may, Foreign: Translation not found

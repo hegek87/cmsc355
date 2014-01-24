@@ -1,3 +1,4 @@
 1. Allow user to switch translation file mid program
 2. Allow user to enter entire sentences and receive translation word by word (although this may not be grammatically correct I suppose)
-
+3. Add option flags (e.g. --help opens the pdf usage.pdf for the user)
+4. Have the output file specify which language the foreign word is. That is, rather than 'English: apple, Foreign: eple', we could instead write 'English: apple, Norwegian: eple' to the file
