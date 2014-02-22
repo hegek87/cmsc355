@@ -12,12 +12,12 @@ import java.net.Socket;
 /********************************************************
 *                  Dictionary
 * Translate an english word to some foreign language. The
-* language translated to by default is norwegian.
+* language translated to by default is norwegian. After 
+* the word has been translated, it is written back to the
+* socket.
 *********************************************************
-* Input: String fileName, String englishWord -- fileName
-* is optional.
-* Output: Displays the foreign word to the user and will
-* the foreign word to the socket.
+* Input: None
+* Output: Writes a foreign word to the socket
 ********************************************************/
 public class Dictionary{
 	private String fileName;
@@ -29,27 +29,23 @@ public class Dictionary{
 	public static final int port = 8080;
 	
 	public Dictionary(){
-		this.fileName = "norwegian.txt";
+		this.fileName = "norwegian";
 	}
 	
-	public void openConnection(){
-		try{
-			// Start socket connection
-			ServerSocket serSock = new ServerSocket(port);
-			Socket client = serSock.accept();
+	// Open streams and start accepting clients
+	public void openConnection() throws 	UnknownHostException,
+								IOException{
+		// Start socket connection
+		ServerSocket serSock = new ServerSocket(port);
+		Socket client = serSock.accept();
+		
+		// Open streams to socket
+		this.sockWrite = 
+			new PrintWriter(client.getOutputStream(), true);
 			
-			// Open streams to socket
-			this.sockWrite = 
-				new PrintWriter(client.getOutputStream(), true);
-				
-			InputStreamReader irs = 
-				new InputStreamReader(client.getInputStream());
-			this.sockRead = new BufferedReader(irs);
-		} catch(UnknownHostException uhe){
-			uhe.printStackTrace();
-		} catch(IOException ioe){
-			ioe.printStackTrace();
-		}
+		InputStreamReader irs = 
+			new InputStreamReader(client.getInputStream());
+		this.sockRead = new BufferedReader(irs);
 	}
 	
 	// clean up -- close the open readers
@@ -65,22 +61,22 @@ public class Dictionary{
 	}
 	
 	// returns the foreign word if found, otherwise return null
-	public String translate(String en){
+	public String translate(String en) throws IOException{
 		String[] enFo;
 		String temp;
-		try{
-			FileReader fr = new FileReader(this.fileName);
-			this.reader = new BufferedReader(fr);
-			// read from file until we reach eof (and get null)
-			while((temp = reader.readLine()) != null){
-				enFo = temp.split(", ");
-				// our word matches an (english, foreign) word pair
-				if(en.equals(enFo[0])){
-					return enFo[1];
-				}
+		if(en.startsWith("-l")){
+			this.fileName = en.split(" ")[1];
+			return "Language changed to " + this.fileName;
+		}
+		FileReader fr = new FileReader(this.fileName+".txt");
+		this.reader = new BufferedReader(fr);
+		// read from file until we reach eof (and get null)
+		while((temp = reader.readLine()) != null){
+			enFo = temp.split(", ");
+			// our word matches an (english, foreign) word pair
+			if(en.equals(enFo[0])){
+				return enFo[1];
 			}
-		} catch(IOException ioe){
-			ioe.printStackTrace();
 		}
 		return "Translation not found";
 	}
@@ -90,23 +86,22 @@ public class Dictionary{
 	
 	// Only set the file if a new file was given
 	public void setFileName(String fileName){ 
-		if(fileName.length() == 0){ return; }
+		if(fileName.equals(this.fileName)){ return; }
 		this.fileName = fileName;
 	}
 	
 	/*********************************************************
-	* Creates a dictionary and uses it to translate a supplied 
-	* english word to a foreign word. Writes the result to the
-	* socket.
+	* Creates a dictionary, and opens a socket. Continually
+	* reads from the socket and translates the word found and
+	* writes it back to the socket.
 	*********************************************************/
 	public static int processWord(){
 		Dictionary d = new Dictionary();
-		
-		// Open the socket.
-		d.openConnection();
-		
-		// Read the word from the socket
 		try{
+			// Open the socket.
+			d.openConnection();
+			
+			// Read the word from the socket
 			String en;
 			while((en = d.getSockReader().readLine()) != null){
 				// Translate the word
@@ -115,8 +110,12 @@ public class Dictionary{
 				// Write translated word to the socket
 				d.getSockWrite().println(foreign);
 			}
+		} catch(UnknownHostException uhe){
+			uhe.printStackTrace();
 		} catch(IOException ioe){
 			ioe.printStackTrace();
+		} finally{
+			d.cleanUp();
 		}
 		return 0;
 	}

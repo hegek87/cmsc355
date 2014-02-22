@@ -1,21 +1,16 @@
-English: apple, Foreign: eple
-English: orangle, Foreign: Translation not found
-English: grape, Foreign: drue
-English: orange, Foreign: appelsin
-English: house, Foreign: hus
-English: airplane, Foreign: fly
-English: bark, Foreign: bjeff
-English: black, Foreign: Translation not found
-English: bike, Foreign: sykkel
-English: apple, Foreign: eple
-English: horse, Foreign: Translation not found
-English: harp, Foreign: Translation not found
-English: grate, Foreign: Translation not found
-English: mark, Foreign: Translation not found
-English: bike, Foreign: sykkel
-English: apple, Foreign: eple
-English: orang, Foreign: Translation not found
-English: orange, Foreign: appelsin
-English: grape, Foreign: drue
-English: house, Foreign: hus
-English: airplane, Foreign: fly
+ENGLISH: apple, NORWEGIAN: eple
+ENGLISH: orange, NORWEGIAN: appelsin
+ENGLISH: apple, SPANISH: manzana
+ENGLISH: car, SPANISH: coche
+ENGLISH: bike, SPANISH: bici
+ENGLISH: fat, SPANISH: Translation not found
+ENGLISH: apple, NORWEGIAN: eple
+ENGLISH: car, NORWEGIAN: bil
+ENGLISH: bike, NORWEGIAN: sykkel
+ENGLISH: bay, NORWEGIAN: Translation not found
+ENGLISH: lot, SPANISH: Translation not found
+ENGLISH: bike, SPANISH: bici
+ENGLISH: house, SPANISH: casa
+ENGLISH: lol, SPANISH: Translation not found
+ENGLISH: airplane, SPANISH: Translation not found
+ENGLISH: apple, NORWEGIAN: eple

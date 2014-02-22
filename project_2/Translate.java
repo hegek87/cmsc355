@@ -15,22 +15,31 @@ import java.io.IOException;
 * Repeatedly prompts the user for input, translating the words to a
 * foreign language.
 *********************************************************************
-* Input: String fileName
+* Input: None
 * Output: Writes a file containing all english words entered by the
-* user and the translated words.
+* user and the translated words. Also displays the translated word to
+* the user.
 *********************************************************************
 * Maintenance Log
 *********************************************************************
-* FIX001 01/24/14 Kenny Hegeland
-* Allowing an optional dictionary file to be supplied
-* FIX002 01/24/14 Kenny Hegeland
-* Restructured the Translate class to not contain all logic in main
+* FIX001 02/22/14 Kenny Hegeland
+* Moved all exception logic to the run method which allows a try-
+* catch-finally block to open streams, do stuff and ensure they are
+* closed even if an exception occurs.
+* FIX002 02/22/14 Kenny Hegeland
+* Added support to change the translation dictionary file. We do this
+* by allowing the user to use the flag -l, followed by the language
+* to translate the word to.
+* FIX003 02/22/14 Kenny Hegeland
+* Allowed the output file to specify the language the english word is
+* being translated to.
 ********************************************************************/
 
-/*******************************************************************
+/********************************************************************
 *                            Translate Class
-* Gets user input and passes it to the Dictionary module to translate
-* it to a foreign word.
+* Gets user input and writes it to a seocket. The other end of the 
+* socket is connected to the dictionary (which works as our server) 
+* where the word is translated into a foreign word.
 *********************************************************************
 * Input: English word
 * Output: Foreign word
@@ -40,26 +49,18 @@ public class Translate{
 	private PrintWriter writer;
 	private BufferedReader socketRead;
 	private PrintWriter socketWrite;
+	private String language;
 	
 	public static final String host = "127.0.0.1";
 	public static final int port = 8080;
-	
-	public void closeStreams(){
-		try{
-			writer.close();
-			socketRead.close();
-			socketWrite.close();
-			in.close();
-		} catch(IOException ioe){
-			ioe.printStackTrace();
-		}
-	}
 		
 	public Translate(){
 		// Open scanner to read user input
 		this.in = new Scanner(System.in);
+		this.language = "norwegian";
 	}
 	
+	// Makes a connection with the dictionary server.
 	public void openStreams() throws 	UnknownHostException,
 							IOException{
 		// Open writer for output file
@@ -78,6 +79,21 @@ public class Translate{
 			new PrintWriter(clientSock.getOutputStream(),true);
 	}
 	
+	public void closeStreams(){
+		try{
+			writer.close();
+			socketRead.close();
+			socketWrite.close();
+			in.close();
+		} catch(IOException ioe){
+			ioe.printStackTrace();
+		}
+	}
+	
+	/**************************************************************
+	* Gives the word to the dictionary to translate and updates the
+	* log file.
+	**************************************************************/
 	public void callDictionary(String en) throws IOException{
 		/*********************************************************
 		* Write the english word to the socket for the dictionary.
@@ -87,16 +103,27 @@ public class Translate{
 		
 		// Read translated word from the socket
 		foreign = socketRead.readLine();
-		writer.print("English: " + en);
-		writer.println(", Foreign: " + foreign);
+		// We changed the language - do not log this
+		if(foreign.startsWith("Language changed to")){
+			this.language = foreign.split(" ")[3];
+			System.out.println(foreign);
+			return;
+		}
+		writer.print("ENGLISH: " + en);
+		writer.println(", "+this.language.toUpperCase()+": "+foreign);
 		System.out.println(foreign);
 	}
 	
 	public Scanner getIn(){ return this.in; }
 	
+	/**************************************************************
+	* This method contains all the logic to run the program. It 
+	* opens streams to the server and gets the user input which is
+	* passed to the dictionary to be translated.
+	**************************************************************/
 	public static void run(){
 		Translate tran = new Translate();
-		try{	
+		try{
 			tran.openStreams();
 			/**************************************************
 			* Continually get user input until user enters q.
