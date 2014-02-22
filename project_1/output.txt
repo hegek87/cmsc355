@@ -30,3 +30,5 @@ English: house, Foreign: casa
 English: face, Foreign: cara
 English: crab, Foreign: cangrejo
 English: may, Foreign: Translation not found
+English: apple, Foreign: eple
+English: quit, Foreign: slutte

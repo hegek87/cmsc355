@@ -1,0 +1,15 @@
+apple, manzana
+orange, naranja
+grape, uva
+bike, bici
+car, coche
+crab, cangrejo
+face, cara
+table, mesa
+quit, dejar de hacer algo
+bark, corteza
+bouncy, con mucho rebote
+clothing, ropa
+finish, final 
+extrovert, extrovertido 
+house, casa
