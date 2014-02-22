@@ -45,9 +45,6 @@ public class Dictionary{
 			InputStreamReader irs = 
 				new InputStreamReader(client.getInputStream());
 			this.sockRead = new BufferedReader(irs);
-			
-			FileReader fr = new FileReader(this.fileName);
-			this.reader = new BufferedReader(fr);
 		} catch(UnknownHostException uhe){
 			uhe.printStackTrace();
 		} catch(IOException ioe){
@@ -72,6 +69,8 @@ public class Dictionary{
 		String[] enFo;
 		String temp;
 		try{
+			FileReader fr = new FileReader(this.fileName);
+			this.reader = new BufferedReader(fr);
 			// read from file until we reach eof (and get null)
 			while((temp = reader.readLine()) != null){
 				enFo = temp.split(", ");
@@ -83,7 +82,7 @@ public class Dictionary{
 		} catch(IOException ioe){
 			ioe.printStackTrace();
 		}
-		return null;
+		return "Translation not found";
 	}
 	
 	public BufferedReader getSockReader(){ return sockRead; }
@@ -108,35 +107,17 @@ public class Dictionary{
 		
 		// Read the word from the socket
 		try{
-			String fileWord[] = 
-				d.getSockReader().readLine().split(":");
-			d.setFileName(fileWord[0]);
-		
-			// Translate the word
-			String foreign = d.translate(fileWord[1]);
-			String found = (foreign != null) ? 
-						foreign : "Translation not found";
+			String en;
+			while((en = d.getSockReader().readLine()) != null){
+				// Translate the word
+				String foreign = d.translate(en);
 						
-			// Write translated word to the socket
-			d.getSockWrite().println(found);
+				// Write translated word to the socket
+				d.getSockWrite().println(foreign);
+			}
 		} catch(IOException ioe){
 			ioe.printStackTrace();
 		}
-	/*
-		Dictionary d;
-		d = new Dictionary();
-		d.openConnection();
-		String foreign = d.translate(en);
-		// Determine if the (english, foreign) word pair was found
-		String found = (foreign != null) ? 
-						foreign : "Translation not found";
-		
-		// display to user
-		System.out.println(found);
-		
-		d.cleanUp();
-		return 0;
-		*/
 		return 0;
 	}
 	

@@ -1,0 +1,21 @@
+English: apple, Foreign: eple
+English: orangle, Foreign: Translation not found
+English: grape, Foreign: drue
+English: orange, Foreign: appelsin
+English: house, Foreign: hus
+English: airplane, Foreign: fly
+English: bark, Foreign: bjeff
+English: black, Foreign: Translation not found
+English: bike, Foreign: sykkel
+English: apple, Foreign: eple
+English: horse, Foreign: Translation not found
+English: harp, Foreign: Translation not found
+English: grate, Foreign: Translation not found
+English: mark, Foreign: Translation not found
+English: bike, Foreign: sykkel
+English: apple, Foreign: eple
+English: orang, Foreign: Translation not found
+English: orange, Foreign: appelsin
+English: grape, Foreign: drue
+English: house, Foreign: hus
+English: airplane, Foreign: fly
