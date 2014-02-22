@@ -15,7 +15,7 @@ import java.io.IOException;
 * Repeatedly prompts the user for input, translating the words to a
 * foreign language.
 *********************************************************************
-* Input: None
+* Input: English word
 * Output: Writes a file containing all english words entered by the
 * user and the translated words. Also displays the translated word to
 * the user.

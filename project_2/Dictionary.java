@@ -16,7 +16,7 @@ import java.net.Socket;
 * the word has been translated, it is written back to the
 * socket.
 *********************************************************
-* Input: None
+* Input: Reads an english word from the socket
 * Output: Writes a foreign word to the socket
 ********************************************************/
 public class Dictionary{
