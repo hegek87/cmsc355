@@ -1,0 +1,15 @@
+apple, eple
+orange, appelsin
+grape, drue
+bike, sykkel
+car, bil
+airplane, fly
+face, ansikt
+table, bord
+quit, slutte
+bark, bjeff
+sleep, sove
+clothing, kledning
+finish, avslutte
+movie, film
+house, hus

@@ -1,0 +1,3 @@
+service1 Service1.jar
+service2 Service2.jar
+Dictionary Dictionary.jar

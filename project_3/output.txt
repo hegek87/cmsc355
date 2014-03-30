@@ -1,0 +1,18 @@
+English: apple, Foreign: eple
+English: car, Foreign: bil
+English: house, Foreign: hus
+English: cat, Foreign: Translation not found
+English: grape, Foreign: drue
+English: bike, Foreign: sykkel
+English: air, Foreign: Translation not found
+English: apple, Foreign: eple
+English: car, Foreign: bil
+English: house, Foreign: hus
+English: airplane, Foreign: fly
+English: car, Foreign: bil
+English: grape, Foreign: drue
+English: apple, Foreign: eple
+English: house, Foreign: hus
+English: cat, Foreign: Translation not found
+English: cow, Foreign: Translation not found
+English: bat, Foreign: Translation not found
