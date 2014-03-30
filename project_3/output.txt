@@ -16,3 +16,19 @@ English: house, Foreign: hus
 English: cat, Foreign: Translation not found
 English: cow, Foreign: Translation not found
 English: bat, Foreign: Translation not found
+English: apple, Foreign: eple
+English: cat, Foreign: Translation not found
+English: orange, Foreign: appelsin
+English: apple, Foreign: eple
+English: apple, Foreign: eple
+English: organe, Foreign: Translation not found
+English: orange, Foreign: appelsin
+English: apple, Foreign: eple
+English: apple, Foreign: eple
+English: apple, Foreign: eple
+English: apple, Foreign: eple
+English: orange, Foreign: appelsin
+English: grape, Foreign: drue
+English: car, Foreign: bil
+English: airplane, Foreign: fly
+English: cat, Foreign: Translation not found

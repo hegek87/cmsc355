@@ -1,5 +1,6 @@
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
+import java.net.SocketException;
 import java.io.IOException;
 import java.util.Scanner;
 import java.net.Socket;
@@ -16,6 +17,10 @@ import java.net.Socket;
 *********************************************************************
 * FIX001 03/30/14 Kenny Hegeland
 * Fixed the server to properly handle multiple clients
+* FIX002 03/30/14 Kenny Hegeland
+* Allowed the server to be shut down.
+* FIX003 03/30/14 Kenny Hegeland
+* Properly handle bad input.
 ********************************************************************/
 
 /********************************************************************
@@ -32,9 +37,11 @@ public class ServiceManager{
 	public void closeServer() {
 		try{
 			server.close();
+		} catch(SocketException se){
+			System.out.println("Server shutdown");
 		} catch(IOException ioe){
 			ioe.printStackTrace();
-		}
+		} 
 	}
 	
 	/****************************************************************
@@ -52,9 +59,9 @@ public class ServiceManager{
 				public void run(){
 					Scanner in = new Scanner(System.in);
 					String message = in.nextLine();
-					if(message.equals("kill()")){ 
-						System.out.println("KILLING");
+					if(message.equals("kill()")){
 						ServiceManager.this.closeServer();
+						System.exit(0);
 					}
 				}
 			});
@@ -66,10 +73,13 @@ public class ServiceManager{
 		}
 	}
 	
+	// Get everything started
 	public static void go(){
 		ServiceManager sm = new ServiceManager();
 		try{
 			sm.openConnections();
+		} catch(SocketException se){
+			System.out.println("Server shutdown");
 		} catch(UnknownHostException uhe){
 			uhe.printStackTrace();
 		} catch(IOException ioe){

@@ -5,7 +5,16 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketException;
 
+/********************************************************************
+*						User Session class
+* Runnable class which allows the user to communicate with the servic
+* e broker. The user connection is given to this runnable, which open
+* s streams to communicate with the user. The session is passed in se
+* rvice information, calls the indicated session, and returns the res
+* ult.
+********************************************************************/
 public class UserSession implements Runnable{
 	public static final String path = "./";
 	public static final String cmd = "java -jar ServiceBroker.jar ";
@@ -33,6 +42,19 @@ public class UserSession implements Runnable{
 			new InputStreamReader(this.client.getInputStream());
 		this.socketRead = new BufferedReader(isr);
 	}
+	
+	// Done with streams and sockets - Close them
+	private void closeStreams(){
+		try{
+			socketWrite.close();
+			socketRead.close();
+			client.close();
+		} catch(SocketException se){
+			se.printStackTrace();
+		} catch(IOException ioe){
+			ioe.printStackTrace();
+		}
+	}
 				
 	/*************************************************************
 	* The overridden run method that anything implementing Runnab-
@@ -48,7 +70,7 @@ public class UserSession implements Runnable{
 				serviceName = this.socketRead.readLine();
 				
 				// Has user terminated the session?
-				if(serviceName.equals("q")){ return; }
+				if(serviceName.equals("q")){ closeStreams(); return; }
 				// Build process call string
 				String pCall = cmd + serviceName;
 				// Execute Service
